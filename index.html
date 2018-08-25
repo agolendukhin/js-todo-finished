@@ -8,9 +8,39 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script>
 </head>
 <body>
-    <p>Hello World!</p>
+    <section class="todoapp">
+        <div>
+            <header class="header">
+                <h1>todos</h1>
+                <input class="new-todo" placeholder="What needs to be done?" value="">
+            </header>
+            <section class="main">
+                <input class="toggle-all" type="checkbox">
+                <ul class="todo-list">
+                    <li class="">
+                        <div class="view">
+                            <input class="toggle" type="checkbox">
+                            <label>task1</label>
+                            <button class="destroy"></button>
+                        </div>
+                        <input class="edit" value="tests|">
+                    </li>
+                </ul>
+            </section>
+            <footer class="footer">
+                <span class="todo-count"><strong>3</strong><span> </span><span>items</span><span> left</span></span>
+                <ul class="filters">
+                    <li><a href="#/" class="selected">All</a></li>
+                    <span> </span>
+                    <li><a href="#/active" class="">Active</a></li>
+                    <span> </span>
+                    <li><a href="#/completed" class="">Completed</a></li>
+                </ul>
+            </footer>
+        </div>
+    </section>
+    <script src="index.js"></script>
 </body>
 </html>
