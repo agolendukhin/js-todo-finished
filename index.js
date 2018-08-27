@@ -9,18 +9,11 @@ req.onload  = function() {
     tasks = req.response;
  
     const tasksUl = document.getElementsByClassName("todo-list")[0];
-    tasks.forEach(task => {
-         const li = `
-         <li class="">
-             <div class="view">
-                 <input class="toggle" type="checkbox">
-                 <label>${task.text}</label>
-                 <button class="destroy"></button>
-             </div>
-             <input class="edit" value="${task.text}">
-         </li>`;
-         tasksUl.innerHTML += li;
+    tasks.forEach(task => { // id="task-13"
+        const li = getLiHtml(task);
+        tasksUl.innerHTML += li;
     });
+    console.log('tasks init', tasks);
  };
 req.send(null);
 
@@ -41,15 +34,8 @@ newTodoInput.addEventListener("keydown", function(event) {
 
         tasks.push(task);
         const tasksUl = document.getElementsByClassName("todo-list")[0];
-        const li = `
-        <li class="">
-            <div class="view">
-                <input class="toggle" type="checkbox">
-                <label>${task.text}</label>
-                <button class="destroy"></button>
-            </div>
-            <input class="edit" value="${task.text}">
-        </li>`;
+        const li = getLiHtml(task);
+
         tasksUl.innerHTML += li;
 
         newTodoInput.value = '';
@@ -69,4 +55,39 @@ newTodoInput.addEventListener("keypress", function(event) {
 function getMaxId(tasks) {
     const ids = tasks.map(t => t.id);
     return Math.max.apply(null, ids);
+}
+
+function deleteTask(id) {
+    const elem = document.getElementById(`task-${id}`);
+    elem.parentNode.removeChild(elem);
+}
+
+function getLiHtml(task) {
+    const taskId = `task-${task.id}`;
+    const completedClass = task.completed ? 'completed' : '';
+    const checked = task.completed ? 'checked' : '';
+
+    const li = `
+    <li id="${taskId}" class="${completedClass}">
+        <div class="view">
+            <input class="toggle" type="checkbox" ${checked} onclick="markCompleted(${task.id});">
+            <label>${task.text}</label>
+            <button class="destroy" onclick="deleteTask(${task.id});"></button>
+        </div>
+        <input class="edit" value="${task.text}">
+    </li>`;
+
+    return li;
+}
+
+function markCompleted(taskId) {
+    let taskToChange = tasks.find(t => t.id == taskId);
+    taskToChange.completed = !taskToChange.completed;
+    let liToChange = document.getElementById(`task-${taskToChange.id}`);
+    if (!taskToChange.completed) {
+        liToChange.classList.remove('completed');
+    } else {
+        liToChange.classList.add('completed');
+    }
+    console.log('tasks', tasks);
 }
