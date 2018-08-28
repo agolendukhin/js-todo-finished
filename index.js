@@ -1,15 +1,14 @@
-const url = 'http://5b746c6ea583740014190933.mockapi.io/api/v1/tasks';
-const req = new XMLHttpRequest();
-
 let tasks = [];
 
+const url = 'http://5b746c6ea583740014190933.mockapi.io/api/v1/tasks';
+const req = new XMLHttpRequest();
 req.responseType = 'json';
 req.open('GET', url, true);
 req.onload  = function() {
     tasks = req.response;
  
     const tasksUl = document.getElementsByClassName("todo-list")[0];
-    tasks.forEach(task => { // id="task-13"
+    tasks.forEach(task => {
         const li = getLiHtml(task);
         tasksUl.innerHTML += li;
     });
@@ -58,8 +57,16 @@ function getMaxId(tasks) {
 }
 
 function deleteTask(id) {
+    let arrIndex = 0;
+    tasks.forEach((task, index) => {
+        if (task.id == id) arrIndex = index;
+    });
+
+    tasks.splice(arrIndex, 1);
+
     const elem = document.getElementById(`task-${id}`);
     elem.parentNode.removeChild(elem);
+    console.log(tasks);
 }
 
 function getLiHtml(task) {
@@ -83,7 +90,7 @@ function getLiHtml(task) {
 function markCompleted(taskId) {
     let taskToChange = tasks.find(t => t.id == taskId);
     taskToChange.completed = !taskToChange.completed;
-    let liToChange = document.getElementById(`task-${taskToChange.id}`);
+    let liToChange = document.getElementById(`task-${taskToChange.id}`); // task-13
     if (!taskToChange.completed) {
         liToChange.classList.remove('completed');
     } else {
