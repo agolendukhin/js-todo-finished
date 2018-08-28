@@ -25,31 +25,26 @@ newTodoInput.addEventListener("keydown", function(event) {
         const target = event.target;
         const newText = target.value;
 
-        const task = {
-            id: getMaxId(tasks) + 1,
-            text: newText,
-            completed: false
-        };
-
-        tasks.push(task);
-        const tasksUl = document.getElementsByClassName("todo-list")[0];
-        const li = getLiHtml(task);
-
-        tasksUl.innerHTML += li;
-
-        newTodoInput.value = '';
-        console.log(tasks);
+        addTask(newText);
     }
 });
 
-newTodoInput.addEventListener("keypress", function(event) {
-    console.log('keypress');
-});
+function addTask(newText) {
+    const task = {
+        id: getMaxId(tasks) + 1,
+        text: newText,
+        completed: false
+    };
 
-// [{id: 1}, {id: 5}, {id: 10}]
-// Math.max(1,2,34,5)
-// Math.max([1,2,34,5])
-// Math.max(null, [1,2,34,5])
+    tasks.push(task);
+    const tasksUl = document.getElementsByClassName("todo-list")[0];
+    const li = getLiHtml(task);
+
+    tasksUl.innerHTML += li;
+
+    newTodoInput.value = '';
+    console.log(tasks);
+}
 
 function getMaxId(tasks) {
     const ids = tasks.map(t => t.id);
