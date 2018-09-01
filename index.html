@@ -8,30 +8,31 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
 </head>
 <body>
     <section class="todoapp">
         <div>
             <header class="header">
                 <h1>todos</h1>
-                <input class="new-todo" placeholder="What needs to be done?" value="">
+                <input class="new-todo" placeholder="What needs to be done?" value="" onkeydown="addTask(event)">
             </header>
             <section class="main">
-                <input class="toggle-all" type="checkbox">
+                <input class="toggle-all" type="checkbox" onclick="toggleAllTasks()">
                 <ul class="todo-list"></ul>
             </section>
             <footer class="footer">
-                <span class="todo-count"><strong>3</strong><span> </span><span>items</span><span> left</span></span>
+                <span class="todo-count"></span>
                 <ul class="filters">
-                    <li><a href="#/" class="selected">All</a></li>
+                    <li><a href="#/" id="all-filter" class="selected" onclick="filterAll()">All</a></li>
                     <span> </span>
-                    <li><a href="#/active" class="">Active</a></li>
+                    <li><a href="#/active" id="active-filter" class="" onclick="filterActive()">Active</a></li>
                     <span> </span>
-                    <li><a href="#/completed" class="">Completed</a></li>
+                    <li><a href="#/completed" id="completed-filter"class="" onclick="filterCompleted()">Completed</a></li>
                 </ul>
+                <button class="clear-completed" onclick="clearCompleted()">Clear completed</button>
             </footer>
         </div>
     </section>
-    <script src="index.js"></script>
 </body>
 </html>
