@@ -8,29 +8,35 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script>
+    <script src="js/dom.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/local-storage.js"></script>
+    <script src="js/tasks.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/index.js"></script>
 </head>
 <body>
     <section class="todoapp">
         <div>
             <header class="header">
                 <h1>todos</h1>
-                <input class="new-todo" placeholder="What needs to be done?" value="" onkeydown="addTask(event)">
+                <input class="new-todo" placeholder="What needs to be done?" value="">
             </header>
             <section class="main">
-                <input class="toggle-all" type="checkbox" onclick="toggleAllTasks()">
+                <input class="toggle-all" type="checkbox">
                 <ul class="todo-list"></ul>
             </section>
             <footer class="footer">
                 <span class="todo-count"></span>
                 <ul class="filters">
-                    <li><a href="#/" id="all-filter" class="selected" onclick="filterAll()">All</a></li>
+                    <li><a href="#/" class="all-filter selected">All</a></li>
                     <span> </span>
-                    <li><a href="#/active" id="active-filter" class="" onclick="filterActive()">Active</a></li>
+                    <li><a href="#/active" class="active-filter">Active</a></li>
                     <span> </span>
-                    <li><a href="#/completed" id="completed-filter"class="" onclick="filterCompleted()">Completed</a></li>
+                    <li><a href="#/completed" class="completed-filter">Completed</a></li>
                 </ul>
-                <button class="clear-completed" onclick="clearCompleted()">Clear completed</button>
+                <button class="clear-completed">Clear completed</button>
             </footer>
         </div>
     </section>
